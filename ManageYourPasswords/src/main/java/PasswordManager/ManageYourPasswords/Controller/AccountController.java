@@ -39,6 +39,13 @@ public class AccountController {
       return accountService.getAllAccounts(email);
     }
 
+    @DeleteMapping("/deleteAccount")
+    public ResponseEntity<?> deleteAccount(@RequestParam int id)
+    {
+        return accountService.deleteAccount(id);
+    }
+
+
 
 
 

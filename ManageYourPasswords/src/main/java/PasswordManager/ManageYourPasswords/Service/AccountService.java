@@ -75,5 +75,31 @@ public class AccountService {
     }
 
 
+    public ResponseEntity<?> deleteAccount(int id) {
 
+        Account account=accountRepository.findById(id).orElse(new Account());
+        if(account.getId() != 0)
+            return new ResponseEntity<>(Map.of("message","Deleted Account"),HttpStatus.OK);
+        else
+            return new ResponseEntity<>(Map.of("message","No such account Found with given details"),HttpStatus.NOT_FOUND);
+
+    }
+    public ResponseEntity<?> updateAccount(int id, AccountDTO adto) {
+
+        Account account=accountRepository.findById(id).orElse(new Account());
+        if(account.getId() != 0)
+        {
+
+            account.setWebsiteName(adto.getWebsiteName());
+            account.setEmail(adto.getEmail());
+            account.setPassword(adto.getPassword());
+            account.setUserName(adto.getUserName());
+
+            accountRepository.save(account);
+            return new ResponseEntity<>(Map.of("message","Deleted Account"),HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>(Map.of("message","No such account Found with given details"),HttpStatus.NOT_FOUND);
+
+    }
 }

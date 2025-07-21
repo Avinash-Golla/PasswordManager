@@ -37,7 +37,7 @@ public class RootUserEntity {
         this.email=email;
 
     }
-    RootUserEntity(String userName, String password, String email)
+    RootUserEntity(String userName, String email , String password)
     {
 
         this.userName=userName;

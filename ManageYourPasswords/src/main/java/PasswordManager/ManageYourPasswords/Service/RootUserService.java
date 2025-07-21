@@ -49,14 +49,14 @@ public class RootUserService {
          RootUserEntity rootUserEntityUserName=rootUserRepository.findByuserName(rootUser.getUserName());
          if(rootUserEntityEmail !=null && rootUserEntityUserName !=null)
          {
-             return new ResponseEntity<>("The user is already existing with this email and UserName", HttpStatus.OK);
+             return new ResponseEntity<>(Map.of("message","The user is already existing with this email and UserName"), HttpStatus.NOT_ACCEPTABLE);
          }
          else if(rootUserEntityEmail!=null)
-             return new ResponseEntity<>("The user is already existing with this email", HttpStatus.OK);
+             return new ResponseEntity<>(Map.of("message","The user is already existing with this email"), HttpStatus.NOT_ACCEPTABLE);
          else if(rootUserEntityUserName!=null)
-             return new ResponseEntity<>("The user is already existing with this userName", HttpStatus.OK);
+             return new ResponseEntity<>(Map.of("message","The user is already existing with this userName"), HttpStatus.NOT_ACCEPTABLE);
          else{
-             return new ResponseEntity<>(rootUserRepository.save(rootUser), HttpStatus.OK);
+             return new ResponseEntity<>(Map.of("message","Registered User with this credentials"), HttpStatus.OK);
          }
     }
 
